@@ -11,23 +11,27 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    private StringBuilder orderDetails = new StringBuilder();
+    private int totalAmount = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = (Button) findViewById(R.id.button);
+        Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String outputStr = "";
 
-                RadioButton boy = (RadioButton) findViewById(R.id.rdbBoy);
-                RadioButton girl = (RadioButton) findViewById(R.id.rdbGirl);
+                RadioGroup gender = findViewById(R.id.rgGender);
+                RadioButton boy = findViewById(R.id.rdbBoy);
+                RadioButton girl = findViewById(R.id.rdbGirl);
                 if (boy.isChecked())
-                    outputStr += "男性\n";
+                    outputStr += "性別：男性\n";
                 else if (girl.isChecked())
-                    outputStr += "女性\n";
+                    outputStr += "性別：女性\n";
 
                 RadioGroup type = findViewById(R.id.rgType);
                 RadioButton adult = findViewById(R.id.rdbAdult);
@@ -35,15 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton student = findViewById(R.id.rdbStudent);
                 int price = 0;
                 if (type.getCheckedRadioButtonId() == R.id.rdbAdult) {
-                    outputStr += "成人票\n";
+                    outputStr += "票種：成人票\n";
                     price = 500;
-                }
-                else if (type.getCheckedRadioButtonId() == R.id.rdbChild) {
-                    outputStr += "孩童票\n";
+                } else if (type.getCheckedRadioButtonId() == R.id.rdbChild) {
+                    outputStr += "票種：孩童票\n";
                     price = 250;
-                }
-                else if (type.getCheckedRadioButtonId() == R.id.rdbStudent) {
-                    outputStr += "學生票\n";
+                } else if (type.getCheckedRadioButtonId() == R.id.rdbStudent) {
+                    outputStr += "票種：學生票\n";
                     price = 400;
                 }
 
@@ -51,13 +53,18 @@ public class MainActivity extends AppCompatActivity {
                 String numStr = edtTxtNum.getText().toString();
                 if (!numStr.isEmpty()) {
                     int num = Integer.parseInt(numStr);
-                    int total = num * price;
-                    outputStr += num + "張\n";
-                    outputStr += "金額：" + total + "元\n";
+                    int subTotal = num * price;
+                    outputStr += "張數：" + num + "張\n";
+                    outputStr += "金額：" + subTotal + "元\n";
+
+                    // 更新訂單細節和總金額
+                    orderDetails.append(outputStr).append("\n");
+                    totalAmount += subTotal;
                 }
 
-                TextView output = (TextView) findViewById(R.id.lblOutput);
-                output.setText(outputStr);
+                // 顯示訂單細節和總金額
+                TextView output = findViewById(R.id.lblOutput);
+                output.setText(orderDetails.toString() + "\n總金額：" + totalAmount + "元");
             }
         });
     }
