@@ -29,9 +29,9 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton boy = findViewById(R.id.rdbBoy);
                 RadioButton girl = findViewById(R.id.rdbGirl);
                 if (boy.isChecked())
-                    outputStr += "性別：男性\n";
+                    outputStr += "男性\n";
                 else if (girl.isChecked())
-                    outputStr += "性別：女性\n";
+                    outputStr += "女性\n";
 
                 RadioGroup type = findViewById(R.id.rgType);
                 RadioButton adult = findViewById(R.id.rdbAdult);
@@ -39,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 RadioButton student = findViewById(R.id.rdbStudent);
                 int price = 0;
                 if (type.getCheckedRadioButtonId() == R.id.rdbAdult) {
-                    outputStr += "票種：成人票\n";
+                    outputStr += "成人票\n";
                     price = 500;
                 } else if (type.getCheckedRadioButtonId() == R.id.rdbChild) {
-                    outputStr += "票種：孩童票\n";
+                    outputStr += "孩童票\n";
                     price = 250;
                 } else if (type.getCheckedRadioButtonId() == R.id.rdbStudent) {
-                    outputStr += "票種：學生票\n";
+                    outputStr += "學生票\n";
                     price = 400;
                 }
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 if (!numStr.isEmpty()) {
                     int num = Integer.parseInt(numStr);
                     int subTotal = num * price;
-                    outputStr += "張數：" + num + "張\n";
+                    outputStr += num + "張\n";
                     outputStr += "金額：" + subTotal + "元\n";
 
                     // 更新訂單細節和總金額
