@@ -112,7 +112,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnSelect"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
@@ -122,7 +122,7 @@
         app:layout_constraintTop_toBottomOf="@+id/edtTxtNum" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnOk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
