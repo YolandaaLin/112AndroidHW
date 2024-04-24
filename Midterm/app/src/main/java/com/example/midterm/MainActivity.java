@@ -3,6 +3,7 @@ package com.example.midterm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -20,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button button = findViewById(R.id.button);
+        TextView lblOutput = findViewById(R.id.lblOutput);
+        lblOutput.setMovementMethod(new ScrollingMovementMethod());
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
