@@ -2,6 +2,7 @@ package com.example.midterm;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 public class ShowActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class ShowActivity extends AppCompatActivity {
 
         // 取得 TextView 參考
         TextView lblOutput = findViewById(R.id.lblOutput);
+        lblOutput.setMovementMethod(new ScrollingMovementMethod());
 
         // 顯示訂單細節和總金額
         lblOutput.setText(orderDetails + "\n總金額：" + totalAmount + "元");
