@@ -1,3 +1,7 @@
+package com.example.midterm;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -7,9 +11,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.midterm.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,11 +22,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.btnOk);
+        Button buttonSelect = findViewById(R.id.btnSelect);
+        Button buttonOk = findViewById(R.id.btnOk);
         TextView lblOutput = findViewById(R.id.lblOutput);
         lblOutput.setMovementMethod(new ScrollingMovementMethod());
 
-        button.setOnClickListener(new View.OnClickListener() {
+        buttonSelect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String outputStr = "";
@@ -73,9 +75,22 @@ public class MainActivity extends AppCompatActivity {
                 outputStr += num + "張\n";
                 outputStr += "金額：" + subTotal + "元\n";
 
-                // 更新訂單細節和總金額
+                // 將訂單細節和總金額添加到 orderDetails 和 totalAmount 中
                 orderDetails.append(outputStr).append("\n");
                 totalAmount += subTotal;
+
+                // 更新訂單顯示
+                lblOutput.setText(orderDetails.toString() + "\n總金額：" + totalAmount + "元");
+            }
+        });
+
+        buttonOk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (orderDetails.length() == 0) {
+                    Toast.makeText(MainActivity.this, "請先選擇票種", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 // 創建 Intent 對象並啟動 ShowActivity
                 Intent intent = new Intent(MainActivity.this, ShowActivity.class);
