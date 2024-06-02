@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // 設置工具欄
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
         // 初始化視圖
